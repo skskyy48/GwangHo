@@ -14,6 +14,10 @@ const DDayCalc = () => {
     const [ duration, setDuration ] = React.useState(0);
 
     useEffect(() => {
+        document.title = '디데이 계산기'
+    },[])
+
+    useEffect(() => {
         let dur = moment.duration(moment(endDate).diff(moment(startDate))).asDays();
         setDuration(parseInt(dur))
     },[startDate])
