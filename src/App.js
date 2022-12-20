@@ -1,24 +1,23 @@
-import logo from './logo.svg';
+import React, { useEffect } from 'react';
 import './App.css';
+import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
+import { DatePicker, LocalizationProvider, StaticDatePicker } from '@mui/x-date-pickers';
+import { ButtonGroup, TextField, Button } from '@mui/material';
+import { ko } from 'date-fns/locale'
+import DDayCalc from './pages/DDayCalc';
 
 function App() {
+  
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <LocalizationProvider locale={ko} dateAdapter={AdapterDateFns}>
+      <div className="App">
+        <header>
+          <span>디데이 계산기</span>
+        </header>
+        <DDayCalc />
+      </div>
+    </LocalizationProvider>
   );
 }
 
