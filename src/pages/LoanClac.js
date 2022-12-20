@@ -11,7 +11,13 @@ const LoanCalc = () => {
     const [ tab, setTab ] = useState(0)
     const [ temp, setTemp ] = useState(0)
     const [ totalIsa, setTotalIsa ] = useState(0)
+    const [ plan, setPlan ] = useState([])
     const [ isCalc, setIsCalc ] = useState(false)
+    const [ monthly, setMonthly ] = useState(0)
+
+    useEffect(() => {
+        document.title = '대출이자 계산기'
+    },[])
 
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
@@ -54,33 +60,46 @@ const LoanCalc = () => {
         setRate(0)
         setPeriod(0)
         setIsCalc(false)
+        setPlan([])
     }
 
     const getRate = () => {
-        return rate * 0.01/12
+        return (rate * 0.01)/12
     }
 
-    const monthly = (num) => {
-        return parseInt((principal * (getRate()* ( Math.pow(1+getRate(),period)))) / (Math.pow(1+getRate(),period) -1 ))
+    const getMonthly = () => {
+        let price = Math.round((principal * (getRate()* ( Math.pow(1+getRate(),period)))) / (Math.pow(1+getRate(),period) -1 ));
+        setMonthly(price)
+        return price
     }
 
-    const getTables = () => {
-        let innerHtml = ``
+    const getCalc = () => {
+        let monthly = getMonthly();
+        let temp = principal;
+        let total = 0;
+        let totalIsa = 0;
+        let plans = []
 
-        for(let i=1; i <= period; i++){
-            innerHtml += `
-                <tr>
-                    <td>${i}</td>
-                    <td>${numberWithCommas(monthly())}</td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                    <td></td>
-                </tr>
-            `
+        setPlan([])
+        setTotalIsa(0)
+        if( way === 'wonrigum'){
+            for(let i=1; i<= period; i++){
+                let isa = Math.round(temp * getRate());
+                let wongum = monthly - isa;
+                total = total + wongum;
+                temp = temp - wongum;
+    
+                setTotalIsa(old => old + isa)
+                plans.push([ i, numberWithCommas(monthly), numberWithCommas(wongum), numberWithCommas(isa), numberWithCommas(total), numberWithCommas(temp)])
+            }
+            setPlan(plans)
+        }else if( way === 'mangi'){
+            setTotalIsa(Math.round(principal * getRate()*period));
+            setMonthly(Math.round(principal * getRate()));
         }
+        
+        setIsCalc(true);
 
-        return innerHtml
     }
 
     return (
@@ -118,13 +137,13 @@ const LoanCalc = () => {
                                 <td>{period}개월</td>
                                 <td>{rate}%</td>
                             </tr>
-                            <th>월상환금</th>
+                            <th>{ way === 'mangi' ? '월평균이자' : '월상환금'}</th>
                             <th>총 이자액</th>
                             <th>원금 및 총이자액</th>
                             <tr>
-                                <td>{numberWithCommas(monthly())}원</td>
-                                <td>{period}개월</td>
-                                <td>{rate}%</td>
+                                <td>{numberWithCommas(monthly)}원</td>
+                                <td>{numberWithCommas(totalIsa)}원</td>
+                                <td>{numberWithCommas(principal + totalIsa)}원</td>
                             </tr>
                         </table> 
                         :
@@ -158,17 +177,17 @@ const LoanCalc = () => {
                             fullWidth
                         >
                             <MenuItem value={'wonrigum'}>원리금균등상환</MenuItem>
-                            <MenuItem value={'wongum'}>원금균등상환</MenuItem>
+                            {/* <MenuItem value={'wongum'}>원금균등상환</MenuItem> */}
                             <MenuItem value={'mangi'}>원금만기일시상환</MenuItem>
                         </Select>
                     </div>
                     <div className="row end">
                         <Button variant='contained' color="error" style={{ marginRight : 16 }} onClick={() => reset()}>초기화</Button>
-                        <Button variant='contained' onClick={() => {setIsCalc(true);setTemp(principal)}}>계산하기</Button>
+                        <Button variant='contained' onClick={() => {getCalc()}}>계산하기</Button>
                     </div>
                     {
                         isCalc && way !== 'mangi' ? 
-                        <table border={1}>
+                        <table border={1} style={{ marginTop : 18 }}>
                             <th>회차</th>
                             <th>상환금</th>
                             <th>납입원금</th>
@@ -176,13 +195,15 @@ const LoanCalc = () => {
                             <th>납입원금계</th>
                             <th>잔금</th>
                             {
-                                [...Array(period).keys()].map((i) => {
+                                plan.map((data,i) => {
                                     return(
-                                        <tr>
-                                            <td>{i+1}</td>
-                                            <td>{numberWithCommas(monthly())}원</td>
-                                            <td>{numberWithCommas(monthly() - Math.round(temp * getRate()))}원</td>
-                                            <td>{numberWithCommas(Math.round(temp * getRate()))}원</td>
+                                        <tr key={i}>
+                                            <td>{data[0]}회차</td>
+                                            <td>{data[1]}원</td>
+                                            <td>{data[2]}원</td>
+                                            <td>{data[3]}원</td>
+                                            <td>{data[4]}원</td>
+                                            <td>{data[5]}원</td>
                                         </tr>
                                     )
                                 })
