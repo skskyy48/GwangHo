@@ -78,3 +78,23 @@ a:visited {
 .desc {
   font-size: 13px;
 }
+
+table {
+  border : 1px solid #ddd;
+  border-collapse: collapse;
+  width: 100%;
+}
+
+td {
+  text-align: right;
+  font-size: 12px;
+  white-space: nowrap;
+  padding : 5px;
+}
+
+th {
+  background-color: beige;
+  font-size: 12px;
+  padding: 5px 0;
+  text-align: center;
+}
