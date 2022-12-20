@@ -6,8 +6,6 @@
 .main {
   display: flex;
   background-color: #282c34;
-  height: 100%;
-  width: 100%;
   justify-content: center;
 }
 
@@ -17,6 +15,7 @@
   align-items: flex-start;
   justify-content: flex-start;
   min-width: 940px;
+  max-width: 940px;
   flex-direction: column;
 }
 
@@ -29,4 +28,53 @@
   font-size: 36px;
   font-weight: bold;
   color : #1976d2;
+}
+
+header {
+  background-color: #1976d2;
+  padding : 18px 10vw;
+  color : white;
+  display: flex;
+}
+
+a {
+  margin-right: 16px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+a:visited {
+  color: white;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  flex-direction: row;
+}
+
+.title {
+  font-size: 14px;
+  width: 440px;
+  color : gray;
+  margin-top: 24px;
+}
+
+.end {
+  justify-content: flex-end;
+  margin-top: 32px;
+}
+
+.form {
+  border-width: 2px;
+  border-style: solid;
+  padding : 32px 32px;
+  padding-bottom: 32px;
+  border-color: #1976d2;
+  border-radius: 8px;
+  margin-top: 38px;
+}
+
+.desc {
+  font-size: 13px;
 }
