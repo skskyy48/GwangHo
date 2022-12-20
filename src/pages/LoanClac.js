@@ -4,9 +4,9 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 
 const LoanCalc = () => {
-    const [ principal, setPrincipal ] = useState(10000000);
-    const [ rate, setRate ] = useState(2);
-    const [ period, setPeriod ] = useState(16);
+    const [ principal, setPrincipal ] = useState(0);
+    const [ rate, setRate ] = useState(0);
+    const [ period, setPeriod ] = useState(0);
     const [ way, setWay ] = useState('wonrigum')
     const [ tab, setTab ] = useState(0)
     const [ temp, setTemp ] = useState(0)
