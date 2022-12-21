@@ -7,6 +7,7 @@
   display: flex;
   background-color: #282c34;
   justify-content: center;
+  height: 100%;
 }
 
 .contents {
@@ -97,4 +98,32 @@ th {
   font-size: 12px;
   padding: 5px 0;
   text-align: center;
+}
+
+.between {
+  justify-content: space-between;
+}
+
+label {
+  font-size: 14px;
+  font-weight: bold;
+  color : gray;
+  width : 150px;
+  display: block;
+}
+
+input {
+  margin-left: 24px;
+  padding : 4px;
+}
+
+.input-row {
+  margin-top: 12px;
+  display: flex;
+}
+
+.alert {
+  font-size: 16px;
+  font-weight: bold;
+  color : #3f3f3f;
 }
