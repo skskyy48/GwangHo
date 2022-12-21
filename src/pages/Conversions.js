@@ -13,7 +13,7 @@ const Conversion = () => {
     const [ tab, setTab ] = useState(0);
 
     useEffect(() => {
-        document.title = '대출이자 계산기'
+        document.title = '단위 변환기'
     },[])
 
     function TabPanel(props) {
