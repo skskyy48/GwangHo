@@ -12,6 +12,7 @@ import {
 } from "react-router-dom";
 import DDayCalc from './pages/DDayCalc';
 import LoanCalc from './pages/LoanClac';
+import Conversion from './pages/Conversions';
 
 const firebaseConfig = {
   apiKey: "AIzaSyBd8pmHpr0xlDpACCk3WawKh9vGjb_ss4o",
@@ -32,7 +33,7 @@ const root = document.getElementById('root');
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <DDayCalc />,
+    element:<LoanCalc />,
   },
   {
     path : "/d-day",
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
   {
     path : '/loan-calc',
     element : <LoanCalc />
+  },
+  {
+    path : '/conversion',
+    element : <Conversion />
   }
 ]);
 
