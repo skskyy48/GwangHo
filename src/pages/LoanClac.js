@@ -1,6 +1,7 @@
 import { TabsContext } from "@mui/base";
 import { Box, Button, MenuItem, Select, Slider, Tab, Tabs, TextField, Typography } from "@mui/material";
 import React, { useEffect, useState } from "react";
+import { GoogleAdvertise } from "../components/GoogleAdvertise";
 import Header from "../components/Header";
 
 const LoanCalc = () => {
@@ -28,7 +29,7 @@ const LoanCalc = () => {
           >
             {value === index && (
               <Box sx={{ p: 3 }}>
-                <Typography>{children}</Typography>
+                <div>{children}</div>
               </Box>
             )}
           </div>
@@ -101,6 +102,13 @@ const LoanCalc = () => {
     return (
         <div className="App">
             <Header/>
+            <GoogleAdvertise
+                client="ca-pub-7735668451615080"
+                slot="5999780999"
+                format="auto"
+                responsive="true"
+                layoutKey="-fz+6a+19-cg+hh"
+            />
             <div className="main">
                 <div className='contents'>
                     <h5 className='title'>대출이자 계산기</h5>

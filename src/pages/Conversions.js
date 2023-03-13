@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import Header from "../components/Header";
 import '../App.css';
 import { Box, FormControl, InputAdornment, InputLabel, MenuItem, OutlinedInput, Select, Tab, Tabs, Typography } from "@mui/material";
+import { GoogleAdvertise } from "../components/GoogleAdvertise";
 
 const lengthUnits = ['mm','cm','m','km','in','ft','yd','mile']
 const lengthKo = ['밀리미터','센티미터','미터','킬로미터','인치','피트','야드','마일']
@@ -171,6 +172,13 @@ const Conversion = () => {
     return (
         <div className="App">
             <Header />
+            <GoogleAdvertise
+                client="ca-pub-7735668451615080"
+                slot="5999780999"
+                format="auto"
+                responsive="true"
+                layoutKey="-fz+6a+19-cg+hh"
+            />
             <div className="main">
                 <div className='contents'>
                     <h5 className='title'>단위 변환기</h5>

@@ -6,6 +6,7 @@ import { AdapterDateFns } from '@mui/x-date-pickers/AdapterDateFns'
 import { ko } from 'date-fns/locale'
 import '../App.css';
 import Header from "../components/Header";
+import { GoogleAdvertise } from "../components/GoogleAdvertise";
 
 const DDayCalc = () => {
     const [ standard, setStandard ] = React.useState('today')
@@ -27,6 +28,13 @@ const DDayCalc = () => {
         <LocalizationProvider locale={ko} dateAdapter={AdapterDateFns}>
             <div className="App">
                 <Header />
+                <GoogleAdvertise
+                client="ca-pub-7735668451615080"
+                slot="5999780999"
+                format="auto"
+                responsive="true"
+                layoutKey="-fz+6a+19-cg+hh"
+            />
                 <div className='main'>
                     <div className='contents'>
                         <h5 className='title'>디데이 계산기</h5>
