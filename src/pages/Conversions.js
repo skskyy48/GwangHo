@@ -12,10 +12,6 @@ const Conversion = () => {
     const [ value, setValue ] = useState(0)
     const [ tab, setTab ] = useState(0);
 
-    useEffect(() => {
-        document.title = '단위 변환기'
-    },[])
-
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
       

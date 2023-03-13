@@ -14,11 +14,7 @@ const LoanCalc = () => {
     const [ plan, setPlan ] = useState([])
     const [ isCalc, setIsCalc ] = useState(false)
     const [ monthly, setMonthly ] = useState(0)
-
-    useEffect(() => {
-        document.title = '대출이자 계산기'
-    },[])
-
+    
     function TabPanel(props) {
         const { children, value, index, ...other } = props;
       
